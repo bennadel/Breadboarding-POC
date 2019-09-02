@@ -1,21 +1,18 @@
 
 // Import the core angular services.
-// import { ActivatedRoute } from "@angular/router";
-
-// Import the core angular services.
 import { Component } from "@angular/core";
 
 // ----------------------------------------------------------------------------------- //
 // ----------------------------------------------------------------------------------- //
 
 @Component({
-	selector: "app-root",
-	styleUrls: [ "./app.component.less" ],
-	templateUrl: "./app.component.htm"
+	selector: "add-text-view",
+	styleUrls: [ "./add-text-view.component.less" ],
+	templateUrl: "./add-text-view.component.htm"
 })
-export class AppComponent {
+export class AddTextViewComponent {
 
-	// I initialize the app component.
+	// I initialize the view component.
 	constructor() {
 
 		// ....

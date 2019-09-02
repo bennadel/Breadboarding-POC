@@ -9,16 +9,14 @@ import { Component } from "@angular/core";
 // ----------------------------------------------------------------------------------- //
 
 @Component({
-	selector: "app-root",
-	styleUrls: [ "./app.component.less" ],
-	templateUrl: "./app.component.htm"
+	selector: "build-view",
+	styleUrls: [ "./build-view.component.less" ],
+	templateUrl: "./build-view.component.htm"
 })
-export class AppComponent {
+export class BuildViewComponent {
 
 	// I initialize the app component.
 	constructor() {
-
-		// ....
 
 	}
 

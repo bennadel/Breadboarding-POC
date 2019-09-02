@@ -1,0 +1,45 @@
+
+<div class="nav-column">
+
+	<nav class="modes">
+		<a routerLink="/app/build" class="mode mode--on">
+			<span>Build</span>
+		</a>
+		<a routerLink="/app/preview" class="mode">
+			<span>Preview</span>
+		</a>
+	</nav>
+
+	<div class="toc">
+		Toc....
+	</div>
+
+</div>
+
+<div class="content-column">
+
+	Build view ....
+
+	<p>
+		<a routerLink="./edit-action/4">Edit action</a>
+	</p>
+
+	<p>
+		<a routerLink="./edit-field/4">Edit field</a>
+	</p>
+
+	<p>
+		<a routerLink="./edit-placeholder/4">Edit placeholder</a>
+	</p>
+
+	<p>
+		<a routerLink="./edit-text/4">Edit text</a>
+	</p>
+
+</div>
+
+<div class="action-column">
+
+	<router-outlet></router-outlet>
+
+</div>

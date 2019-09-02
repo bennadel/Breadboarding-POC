@@ -1,21 +1,18 @@
 
 // Import the core angular services.
-// import { ActivatedRoute } from "@angular/router";
-
-// Import the core angular services.
 import { Component } from "@angular/core";
 
 // ----------------------------------------------------------------------------------- //
 // ----------------------------------------------------------------------------------- //
 
 @Component({
-	selector: "app-root",
-	styleUrls: [ "./app.component.less" ],
-	templateUrl: "./app.component.htm"
+	selector: "add-breadboard-view",
+	styleUrls: [ "./add-breadboard-view.component.less" ],
+	templateUrl: "./add-breadboard-view.component.htm"
 })
-export class AppComponent {
+export class AddBreadboardViewComponent {
 
-	// I initialize the app component.
+	// I initialize the view component.
 	constructor() {
 
 		// ....

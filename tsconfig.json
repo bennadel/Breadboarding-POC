@@ -19,6 +19,9 @@
 		"moduleResolution": "node",
 		"noImplicitAny": true,
 		"outDir": "./dist/out-tsc",
+		"paths": {
+			"~/app/*": [ "src/app/*" ]
+		},
 		"pretty": true,
 		"removeComments": false,
 		"sourceMap": true,

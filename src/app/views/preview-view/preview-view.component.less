@@ -1,0 +1,53 @@
+
+:host {
+	bottom: 0px ;
+	display: flex ;
+	left: 0px ;
+	position: absolute ;
+	right: 0px ;
+	top: 0px ;
+}
+
+.nav-column {
+	background-color: #fafafa ;
+	border-right: 1px solid #cccccc ;
+	display: flex ;
+	flex: 0 0 auto ;
+	flex-direction: column ;
+	width: 300px ;
+}
+
+.content-column {
+	flex: 1 1 auto ;
+}
+
+.modes {
+	display: flex ;
+	flex: 0 0 50px ;
+}
+
+.mode {
+	background-color: #f0f0f0 ;
+	border-bottom: 1px solid #ffffff ;
+	color: #666666 ;
+	display: flex ;
+	flex: 1 0 50% ;
+	font-size: 20px ;
+	text-decoration: none ;
+
+	&--on {
+		background-color: #fafafa ;
+		border-bottom-color: #fafafa ;
+		color: #000000 ;
+		font-weight: 700 ;
+	}
+
+	span {
+		margin: auto auto auto auto ;
+	}
+}
+
+.toc {
+	flex: 1 1 auto ;
+	overflow: auto ;
+}
