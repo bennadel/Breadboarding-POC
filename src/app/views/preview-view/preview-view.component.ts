@@ -15,7 +15,7 @@ import { Component } from "@angular/core";
 })
 export class PreviewViewComponent {
 
-	// I initialize the app component.
+	// I initialize the view component.
 	constructor() {
 
 	}
