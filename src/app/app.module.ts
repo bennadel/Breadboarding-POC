@@ -37,15 +37,6 @@ export interface RoutableView {
 		...PreviewView.modules,
 
 		RouterModule.forRoot(
-			/*
-				/app/preview  =>
-				/app/preview/breadboard/:id
-
-				/app/build/breadboard/:id/view
-				/app/build/breadboard/:id/edit --> the breadboard itself?
-				/app/build/breadboard/:id/items/add/:type
-				/app/build/breadboard/:id/items/edit/:id
-			*/
 			[
 				{
 					path: "",
@@ -55,19 +46,24 @@ export interface RoutableView {
 				{
 					path: "app",
 					children: [
-						...BuildView.routes,
-						...PreviewView.routes,
 						{
 							path: "",
 							pathMatch: "full",
 							redirectTo: "preview"
-						}
+						},
+						...BuildView.routes,
+						...PreviewView.routes
 					]
 				}
 			],
 			{
 				// Tell the router to use the hash instead of HTML5 pushstate.
 				useHash: true,
+
+				// Allow ActivatedRoute to inherit params from parent segments. This
+				// will force params to be uniquely named, which will help with debugging
+				// and maintenance of the app.
+				paramsInheritanceStrategy: "always",
 
 				// Enable the Angular 6+ router features for scrolling and anchors.
 				scrollPositionRestoration: "enabled",

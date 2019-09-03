@@ -1,6 +1,7 @@
 
 // Import the core angular services.
-// import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
+import { Router } from "@angular/router";
 
 // Import the core angular services.
 import { Component } from "@angular/core";
@@ -16,7 +17,14 @@ import { Component } from "@angular/core";
 export class PreviewViewComponent {
 
 	// I initialize the view component.
-	constructor() {
+	constructor(
+		activatedRoute: ActivatedRoute,
+		router: Router
+		) {
+
+		console.warn( "Preview constructor" );
+
+		console.log( activatedRoute.snapshot.params );
 
 	}
 

@@ -13,16 +13,7 @@ import { SharedModule } from "~/app/shared/shared.module";
 
 @NgModule({
 	imports: [
-		SharedModule,
-		// NOTE: When a routing module is statically included, then the routing module
-		// needs to be explicitly imported. In order to not worry about this divergence,
-		// let's let the child module define the importable modules (which may or may
-		// not be an EMPTY ARRAY - empty if lazy-loaded).
-		// ...ActivityView.modules,
-		// ...LearnView.modules,
-		// ...PeopleView.modules,
-		// ...ProjectsView.modules,
-		// ...PrototypesView.modules
+		SharedModule
 	],
 	declarations: [
 		PreviewViewComponent
@@ -43,20 +34,18 @@ export var PreviewView: RoutableView = {
 	routes: [
 		{
 			path: "preview",
-			component: PreviewViewComponent,
 			children: [
-				// ...ActivityView.routes,
-				// ...LearnView.routes,
-				// ...PeopleView.routes,
-				// ...ProjectsView.routes,
-				// ...PrototypesView.routes,
-
-				// Handle the "no route" case.
-				// {
-				// 	path: "",
-				// 	pathMatch: "full",
-				// 	redirectTo: "projects"
-				// }
+				{
+					path: "",
+					pathMatch: "full",
+					// Internally, the component will see "first" and then redirect to
+					// the first breadboard in the workflow.
+					redirectTo: "first"
+				},
+				{
+					path: ":breadboardID",
+					component: PreviewViewComponent
+				}
 			]
 		}
 	]

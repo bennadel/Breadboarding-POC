@@ -59,23 +59,35 @@ export var BuildView: RoutableView = {
 	routes: [
 		{
 			path: "build",
-			component: BuildViewComponent,
 			children: [
-				...AddActionView.routes,
-				...AddBreadboardView.routes,
-				...AddFieldView.routes,
-				...AddPlaceholderView.routes,
-				...AddTextView.routes,
-				...EditActionView.routes,
-				...EditFieldView.routes,
-				...EditPlaceholderView.routes,
-				...EditTextView.routes,
-				...EditView.routes,
-				...ViewView.routes,
 				{
 					path: "",
 					pathMatch: "full",
-					redirectTo: "view"
+					// Internally, the component will see "first" and then redirect to
+					// the first breadboard in the workflow.
+					redirectTo: "first"
+				},
+				{
+					path: ":breadboardID",
+					component: BuildViewComponent,
+					children: [
+						{
+							path: "",
+							pathMatch: "full",
+							redirectTo: "view"
+						},
+						...AddActionView.routes,
+						...AddBreadboardView.routes,
+						...AddFieldView.routes,
+						...AddPlaceholderView.routes,
+						...AddTextView.routes,
+						...EditActionView.routes,
+						...EditFieldView.routes,
+						...EditPlaceholderView.routes,
+						...EditTextView.routes,
+						...EditView.routes,
+						...ViewView.routes						
+					]
 				}
 			]
 		}
