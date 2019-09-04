@@ -1,0 +1,51 @@
+
+<div class="title">
+	{{ breadboard.title }}
+</div>
+
+<ul class="items">
+	<ng-template ngFor let-item [ngForOf]="breadboard.items">
+
+		<li class="item" [ngSwitch]="item.type">
+			
+			<ng-template ngSwitchCase="text">
+
+				<div class="text-item">
+					{{ item.value }}
+				</div>
+
+			</ng-template>
+
+			<ng-template ngSwitchCase="field">
+
+				<div class="field-item">
+					<label class="field-item__label">
+						{{ item.label }}:
+					</label>
+					<div class="field-item__value">
+						{{ item.value || "&nbsp;" }}
+					</div>
+				</div>
+
+			</ng-template>
+
+			<ng-template ngSwitchCase="placeholder">
+
+				<div class="placeholder-item">
+					{{ item.label }}
+				</div>
+
+			</ng-template>
+
+			<ng-template ngSwitchCase="action">
+
+				<div class="action-item">
+					{{ item.label }}
+				</div>
+
+			</ng-template>
+
+		</li>
+
+	</ng-template>
+</ul>

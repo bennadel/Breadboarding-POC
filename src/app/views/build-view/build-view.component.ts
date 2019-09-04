@@ -1,10 +1,12 @@
 
 // Import the core angular services.
 import { ActivatedRoute } from "@angular/router";
+import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 
-// Import the core angular services.
-import { Component } from "@angular/core";
+// Import the application components and services.
+import { Breadboard } from "~/app/shared/interfaces/breadboard";
+import { sampleData } from "~/app/shared/interfaces/breadboard";
 
 // ----------------------------------------------------------------------------------- //
 // ----------------------------------------------------------------------------------- //
@@ -16,15 +18,15 @@ import { Component } from "@angular/core";
 })
 export class BuildViewComponent {
 
+	public breadboards: Breadboard[];
+
 	// I initialize the view component.
 	constructor(
 		activatedRoute: ActivatedRoute,
 		router: Router
 		) {
 
-		console.warn( "Build constructor" );
-
-		console.log( activatedRoute.snapshot.params );
+		this.breadboards = sampleData;
 
 	}
 

@@ -5,6 +5,9 @@ import { FormsModule } from "@angular/forms";
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
+// Import the application components and services.
+import { SmallBreadboardComponent } from "./components/small-breadboard/small-breadboard.component";
+
 // ----------------------------------------------------------------------------------- //
 // ----------------------------------------------------------------------------------- //
 
@@ -14,7 +17,9 @@ var sharedModules = [
 	RouterModule
 ];
 
-var sharedDeclarations: any[] = [];
+var sharedDeclarations: any[] = [
+	SmallBreadboardComponent
+];
 
 // The goal of the SharedModule is to organize declarations and other modules that will
 // be imported into other modules (for rendering).

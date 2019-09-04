@@ -9,12 +9,12 @@
 }
 
 .nav-column {
-	background-color: #fafafa ;
+	background-color: #f0f0f0 ;
 	border-right: 1px solid #cccccc ;
 	display: flex ;
 	flex: 0 0 auto ;
 	flex-direction: column ;
-	width: 300px ;
+	width: 325px ;
 }
 
 .content-column {
@@ -27,19 +27,21 @@
 }
 
 .mode {
-	background-color: #f0f0f0 ;
+	background-color: #ffffff ;
 	border-bottom: 1px solid #ffffff ;
-	color: #666666 ;
+	color: #999999 ;
 	display: flex ;
 	flex: 1 0 50% ;
 	font-size: 20px ;
-	text-decoration: none ;
+	font-weight: 400 ;
+	text-decoration: underline ;
 
 	&--on {
-		background-color: #fafafa ;
-		border-bottom-color: #fafafa ;
+		background-color: #f0f0f0 ;
+		border-bottom-color: #f0f0f0 ;
 		color: #000000 ;
 		font-weight: 700 ;
+		text-decoration: none ;
 	}
 
 	span {
@@ -50,4 +52,28 @@
 .toc {
 	flex: 1 1 auto ;
 	overflow: auto ;
+}
+
+.toc-inner {
+	padding: 30px 30px 30px 30px ;
+}
+
+.toc-items {
+	list-style-type: none ;
+	margin: 0px 0px 0px 0px ;
+	padding: 0px 0px 0px 0px ;
+}
+
+.toc-item {
+	margin: 0px 0px 35px 0px ;
+	padding: 0px 0px 0px 0px ;
+
+	&:last-child {
+		margin-bottom: 0px ;
+	}
+}
+
+.toc-link {
+	display: block ;
+	text-decoration: none ;
 }

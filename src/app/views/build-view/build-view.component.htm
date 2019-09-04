@@ -11,7 +11,25 @@
 	</nav>
 
 	<div class="toc">
-		Toc....
+		<div class="toc-inner">
+
+			<ul class="toc-items">
+				<ng-template ngFor let-breadboard [ngForOf]="breadboards">
+
+					<li class="toc-item">
+
+						<a routerLink="/app/build/{{ breadboard.id }}" class="toc-link">
+							<poc-small-breadboard
+								[breadboard]="breadboard">
+							</poc-small-breadboard>
+						</a>
+
+					</li>
+
+				</ng-template>
+			</ul>
+
+		</div>
 	</div>
 
 </div>

@@ -1,8 +1,5 @@
 
 // Import the core angular services.
-// import { ActivatedRoute } from "@angular/router";
-
-// Import the core angular services.
 import { Component } from "@angular/core";
 
 // ----------------------------------------------------------------------------------- //
