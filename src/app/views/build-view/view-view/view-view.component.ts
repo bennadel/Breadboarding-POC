@@ -17,7 +17,7 @@ import { Router } from "@angular/router";
 		"(window:keydown.t)": "gotoAdd( $event, 'add-text' )",
 	},
 	styleUrls: [ "./view-view.component.less" ],
-	templateUrl: "./view-view.component.htm"
+	templateUrl: "./view-view.component.html"
 })
 export class ViewViewComponent {
 

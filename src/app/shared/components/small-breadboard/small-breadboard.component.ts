@@ -14,7 +14,7 @@ import { Breadboard } from "~/app/shared/interfaces/breadboard";
 	inputs: [ "breadboard" ],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	styleUrls: [ "./small-breadboard.component.less" ],
-	templateUrl: "./small-breadboard.component.htm"
+	templateUrl: "./small-breadboard.component.html"
 })
 export class SmallBreadboardComponent {
 

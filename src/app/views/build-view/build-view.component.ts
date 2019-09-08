@@ -14,7 +14,7 @@ import { sampleData } from "~/app/shared/interfaces/breadboard";
 @Component({
 	selector: "poc-build-view",
 	styleUrls: [ "./build-view.component.less" ],
-	templateUrl: "./build-view.component.htm"
+	templateUrl: "./build-view.component.html"
 })
 export class BuildViewComponent {
 

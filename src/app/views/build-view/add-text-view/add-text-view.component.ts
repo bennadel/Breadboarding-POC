@@ -13,7 +13,7 @@ import { Component } from "@angular/core";
 		// an actual component. I wish I was better at CSS methodologies.
 		"../../../../app/shared/less/aside-form.less"
 	],
-	templateUrl: "./add-text-view.component.htm"
+	templateUrl: "./add-text-view.component.html"
 })
 export class AddTextViewComponent {
 

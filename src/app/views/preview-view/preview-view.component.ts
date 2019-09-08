@@ -14,7 +14,7 @@ import { sampleData } from "~/app/shared/interfaces/breadboard";
 @Component({
 	selector: "poc-preview-view",
 	styleUrls: [ "./preview-view.component.less" ],
-	templateUrl: "./preview-view.component.htm"
+	templateUrl: "./preview-view.component.html"
 })
 export class PreviewViewComponent {
 

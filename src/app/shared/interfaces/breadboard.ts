@@ -3,32 +3,33 @@ export interface Breadboard {
 	id: string;
 	title: string;
 	description: string;
-	items: ( BreadboardText | BreadboardField | BreadboardPlaceholder | BreadboardAction )[];
+	items: BreadboardItem[];
 }
 
-export interface BreadboardItem {
-	id: string;
-	type: string;
-}
+export type BreadboardItem = ( BreadboardText | BreadboardField | BreadboardPlaceholder | BreadboardAction );
 
-export interface BreadboardText extends BreadboardItem {
+export interface BreadboardText {
 	type: "text";
+	id: string;
 	value: string;
 }
 
-export interface BreadboardField extends BreadboardItem {
+export interface BreadboardField {
 	type: "field";
+	id: string;
 	label: string;
 	value: string;
 }
 
-export interface BreadboardPlaceholder extends BreadboardItem {
+export interface BreadboardPlaceholder {
 	type: "placeholder";
+	id: string;
 	label: string;
 }
 
-export interface BreadboardAction extends BreadboardItem {
+export interface BreadboardAction {
 	type: "action";
+	id: string;
 	label: string;
 	target: string;
 }

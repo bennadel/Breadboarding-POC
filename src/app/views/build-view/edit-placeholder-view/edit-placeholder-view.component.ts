@@ -13,7 +13,7 @@ import { Component } from "@angular/core";
 		// an actual component. I wish I was better at CSS methodologies.
 		"../../../../app/shared/less/aside-form.less"
 	],
-	templateUrl: "./edit-placeholder-view.component.htm"
+	templateUrl: "./edit-placeholder-view.component.html"
 })
 export class EditPlaceholderViewComponent {
 
