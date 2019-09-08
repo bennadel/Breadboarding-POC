@@ -10,11 +10,11 @@ import { Router } from "@angular/router";
 @Component({
 	selector: "poc-view-view",
 	host: {
-		"(window:keydown.a)": "gotoAdd( 'add-action' )",
-		"(window:keydown.b)": "gotoAdd( 'add-breadboard' )",
-		"(window:keydown.f)": "gotoAdd( 'add-field' )",
-		"(window:keydown.p)": "gotoAdd( 'add-placeholder' )",
-		"(window:keydown.t)": "gotoAdd( 'add-text' )",
+		"(window:keydown.a)": "gotoAdd( $event, 'add-action' )",
+		"(window:keydown.b)": "gotoAdd( $event, 'add-breadboard' )",
+		"(window:keydown.f)": "gotoAdd( $event, 'add-field' )",
+		"(window:keydown.p)": "gotoAdd( $event, 'add-placeholder' )",
+		"(window:keydown.t)": "gotoAdd( $event, 'add-text' )",
 	},
 	styleUrls: [ "./view-view.component.less" ],
 	templateUrl: "./view-view.component.htm"
@@ -40,7 +40,9 @@ export class ViewViewComponent {
 	// ---
 
 	// I navigate to the given action segment.
-	public gotoAdd( segment: string ) : void {
+	public gotoAdd( event: KeyboardEvent, segment: string ) : void {
+
+		event.preventDefault();
 
 		this.router.navigate(
 			[ `../${ segment }` ],

@@ -6,6 +6,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
 // Import the application components and services.
+import { InputAutofocusDirective } from "./directives/autofocus.directive";
 import { SmallBreadboardComponent } from "./components/small-breadboard/small-breadboard.component";
 
 // ----------------------------------------------------------------------------------- //
@@ -18,6 +19,7 @@ var sharedModules = [
 ];
 
 var sharedDeclarations: any[] = [
+	InputAutofocusDirective,
 	SmallBreadboardComponent
 ];
 
