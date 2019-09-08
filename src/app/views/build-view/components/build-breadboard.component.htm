@@ -1,13 +1,18 @@
 
-<a routerLink="/app/build/{{ breadboard.id }}/edit" class="title">
-	{{ breadboard.title }}
-</a>
-
 <a
-	*ngIf="breadboard.description"
 	routerLink="/app/build/{{ breadboard.id }}/edit"
-	class="description">
-	{{ breadboard.description }}
+	class="breadboard-action">
+
+	<div class="title">
+		{{ breadboard.title }}
+	</div>
+
+	<div
+		*ngIf="breadboard.description"
+		class="description">
+		{{ breadboard.description }}
+	</div>
+
 </a>
 
 <ul class="items">
@@ -19,8 +24,10 @@
 
 				<a
 					routerLink="/app/build/{{ breadboard.id }}/edit-text/{{ item.id }}"
-					class="text-item">
-					{{ item.value }}
+					class="item-action">
+					<div class="text-item">
+						{{ item.value }}
+					</div>
 				</a>
 
 			</ng-template>
@@ -29,12 +36,14 @@
 
 				<a
 					routerLink="/app/build/{{ breadboard.id }}/edit-field/{{ item.id }}"
-				 	class="field-item">
-					<div class="field-item__label">
-						{{ item.label }}:
-					</div>
-					<div class="field-item__value">
-						{{ item.value || "&nbsp;" }}
+				 	class="item-action">
+				 	<div class="field-item">
+						<div class="field-item__label">
+							{{ item.label }}:
+						</div>
+						<div class="field-item__value">
+							{{ item.value || "&nbsp;" }}
+						</div>
 					</div>
 				</a>
 
@@ -44,8 +53,10 @@
 
 				<a
 					routerLink="/app/build/{{ breadboard.id }}/edit-placeholder/{{ item.id }}"
-					class="placeholder-item">
-					{{ item.label }}
+					class="item-action">
+					<div class="placeholder-item">
+						{{ item.label }}
+					</div>
 				</a>
 
 			</ng-template>
@@ -54,8 +65,10 @@
 
 				<a
 					routerLink="/app/build/{{ breadboard.id }}/edit-action/{{ item.id }}"
-					class="action-item">
-					{{ item.label }}
+					class="item-action">
+					<div class="action-item">
+						{{ item.label }}
+					</div>
 				</a>
 
 			</ng-template>
