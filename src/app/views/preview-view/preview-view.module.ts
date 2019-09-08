@@ -4,6 +4,7 @@ import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
 
 // Import the application components and services.
+import { PreviewBreadboardComponent } from "./components/preview-breadboard.component";
 import { PreviewViewComponent } from "./preview-view.component";
 import { RoutableView } from "~/app/app.module";
 import { SharedModule } from "~/app/shared/shared.module";
@@ -16,6 +17,7 @@ import { SharedModule } from "~/app/shared/shared.module";
 		SharedModule
 	],
 	declarations: [
+		PreviewBreadboardComponent,
 		PreviewViewComponent
 	]
 })

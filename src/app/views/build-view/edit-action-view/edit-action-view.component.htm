@@ -1,2 +1,53 @@
 
-Edit Action Item....
+<div class="form-body">
+	<div class="form-body-inner">
+
+		<h3 class="title">
+			Edit Action
+		</h3>
+
+		<form class="form">
+			<div class="form__item">
+				<label class="form__label">
+					Label:
+				</label>
+				<div class="form__control">
+					<input type="text" autofocus class="form__input" />
+				</div>
+			</div>
+			<div class="form__item">
+				<label class="form__label">
+					Target:
+				</label>
+				<div class="form__control">
+					<select class="form__select">
+						<option value="">New breadboard</option>
+					</select>
+
+					<div class="form__sub-note">
+						<strong>Note:</strong> When selecting a "new breadboard" as the
+						target, a new breadboard will be auto-generated upon save.
+					</div>
+				</div>
+			</div>
+
+			<div class="form__actions">
+				<button type="submit" class="form__submit">
+					Save
+				</button>
+				<button type="button" routerLink="../../view" class="form__cancel">
+					Cancel
+				</button>
+			</div>
+		</form>
+
+	</div>
+</div>
+
+<div class="form-footer">
+
+	<button class="form__delete">
+		Delete Action
+	</button>
+
+</div>

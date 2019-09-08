@@ -41,7 +41,7 @@ export var sampleData: Breadboard[] = [
 	{
 		id: "uuid-1",
 		title: "Breadboard One",
-		description: "",
+		description: "This is my breadboard. Ain't it kind of cool? I think this is something to notice.",
 		items: [
 			{
 				id: "uuid",
@@ -63,7 +63,7 @@ export var sampleData: Breadboard[] = [
 				id: "uuid",
 				type: "action",
 				label: "Go To There",
-				target: "target-uuid"
+				target: "uuid-2"
 			}
 		]
 	},
@@ -81,7 +81,7 @@ export var sampleData: Breadboard[] = [
 				id: "uuid",
 				type: "action",
 				label: "Do It",
-				target: "target-uuid"
+				target: "uuid-3"
 			}
 		]
 	},
@@ -99,19 +99,19 @@ export var sampleData: Breadboard[] = [
 				id: "uuid",
 				type: "action",
 				label: "Save",
-				target: "target-uuid"
+				target: "uuid-1"
 			},
 			{
 				id: "uuid",
 				type: "action",
 				label: "Archive",
-				target: "target-uuid"
+				target: "uuid-2"
 			},
 			{
 				id: "uuid",
 				type: "action",
 				label: "Delete",
-				target: "target-uuid"
+				target: "uuid-3"
 			}
 		]
 	}

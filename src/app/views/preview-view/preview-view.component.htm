@@ -35,7 +35,19 @@
 </div>
 
 <div class="content-column">
+	<div class="content-column-inner">
 
-	Preview view ....
+		<poc-preview-breadboard
+			[breadboard]="selectedBreadboard">
+		</poc-preview-breadboard>
 
+		<div class="actions">
+			<a
+				routerLink="/app/build/{{ selectedBreadboard.id }}"
+				class="action">
+				Edit Breadboard
+			</a>
+		</div>
+
+	</div>
 </div>

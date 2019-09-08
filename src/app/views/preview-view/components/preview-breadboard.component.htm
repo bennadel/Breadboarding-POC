@@ -3,6 +3,10 @@
 	{{ breadboard.title }}
 </div>
 
+<div *ngIf="breadboard.description" class="description">
+	{{ breadboard.description }}
+</div>
+
 <ul class="items">
 	<ng-template ngFor let-item [ngForOf]="breadboard.items">
 
@@ -39,9 +43,9 @@
 
 			<ng-template ngSwitchCase="action">
 
-				<div class="action-item">
+				<a routerLink="/app/preview/{{ item.target }}" class="action-item">
 					{{ item.label }}
-				</div>
+				</a>
 
 			</ng-template>
 

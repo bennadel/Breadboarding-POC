@@ -12,13 +12,14 @@ import { sampleData } from "~/app/shared/interfaces/breadboard";
 // ----------------------------------------------------------------------------------- //
 
 @Component({
-	selector: "preview-view",
+	selector: "poc-preview-view",
 	styleUrls: [ "./preview-view.component.less" ],
 	templateUrl: "./preview-view.component.htm"
 })
 export class PreviewViewComponent {
 
 	public breadboards: Breadboard[];
+	public selectedBreadboard: Breadboard;
 
 	// I initialize the view component.
 	constructor(
@@ -27,6 +28,7 @@ export class PreviewViewComponent {
 		) {
 
 		this.breadboards = sampleData;
+		this.selectedBreadboard = sampleData[ 0 ];
 
 	}
 

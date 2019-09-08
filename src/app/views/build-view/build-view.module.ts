@@ -8,6 +8,7 @@ import { AddBreadboardView } from "./add-breadboard-view/add-breadboard-view.mod
 import { AddFieldView } from "./add-field-view/add-field-view.module";
 import { AddPlaceholderView } from "./add-placeholder-view/add-placeholder-view.module";
 import { AddTextView } from "./add-text-view/add-text-view.module";
+import { BuildBreadboardComponent } from "./components/build-breadboard.component";
 import { BuildViewComponent } from "./build-view.component";
 import { EditActionView } from "./edit-action-view/edit-action-view.module";
 import { EditFieldView } from "./edit-field-view/edit-field-view.module";
@@ -41,6 +42,7 @@ import { ViewView } from "./view-view/view-view.module";
 		...ViewView.modules
 	],
 	declarations: [
+		BuildBreadboardComponent,
 		BuildViewComponent
 	]
 })

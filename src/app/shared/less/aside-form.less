@@ -1,0 +1,119 @@
+
+:host {
+	bottom: 0px ;
+	display: flex ;
+	flex-direction: column ;
+	left: 0px ;
+	position: absolute ;
+	right: 0px ;
+	top: 0px ;
+}
+
+.form-body {
+	flex: 1 1 auto ;
+	overflow: auto ;
+}
+
+.form-body-inner {
+	padding: 30px 30px 30px 30px ;
+}
+
+.form-footer {
+	border-top: 1px solid #cccccc ;
+	flex: 0 0 auto ;
+	padding: 30px 30px 30px 30px ;
+}
+
+.title {
+	font-weight: 600 ;
+	margin: 0px 0px 30px 0px ;
+}
+
+.form {
+	font-size: 16px ;
+	margin: 0px 0px 0px 0px ;
+
+	&__item {
+		margin-bottom: 17px ;
+	}
+
+	&__label {
+		display: block ;
+		font-weight: 600 ;
+		margin-bottom: 5px ;
+	}
+
+	&__control {}
+
+	&__input {
+		border: 1px solid #999999 ;
+		border-radius: 3px 3px 3px 3px ;
+		box-shadow: inset 1px 1px 1px fade( #000000, 15% ) ;
+		display: block ;
+		font-size: inherit ;
+		font-family: monospace ;
+		padding: 7px 7px 7px 7px ;
+		width: 100% ;
+
+		textarea& {
+			height: 100px ;
+		}
+	}
+
+	&__select {
+		border: 1px solid #999999 ;
+		display: block ;
+		font-size: inherit ;
+		font-family: monospace ;
+		width: 100% ;
+	}
+
+	&__actions {
+		display: flex ;
+		margin-top: 30px ;
+	}
+
+	&__submit {
+		background-color: #cccccc ;
+		border: none ;
+		border-radius: 5px 5px 5px 5px ;
+		color: #000000 ;
+		cursor: pointer ;
+		font-size: 16px ;
+		letter-spacing: 0.5px ;
+		line-height: 21px ;
+		padding: 10px 18px 10px 18px ;
+	}
+
+	&__cancel {
+		background: none ;
+		border: none ;
+		cursor: pointer ;
+		font-size: 16px ;
+		letter-spacing: 0.5px ;
+		line-height: 21px ;
+		margin-left: auto ;
+		text-decoration: underline ;
+	}
+
+	&__sub-note {
+		font-size: 13px ;
+		letter-spacing: 0.5px ;
+		line-height: 19px ;
+		margin-top: 7px ;
+	}
+}
+
+.form__delete {
+	background-color: #666666 ;
+	border: none ;
+	border-radius: 5px 5px 5px 5px ;
+	color: #ffffff ;
+	cursor: pointer ;
+	display: block ;
+	font-size: 16px ;
+	letter-spacing: 0.5px ;
+	line-height: 21px ;
+	padding: 20px 20px 20px 20px ;
+	width: 100% ;
+}

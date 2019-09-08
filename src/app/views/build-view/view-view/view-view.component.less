@@ -1,4 +1,41 @@
 
 :host {
+	bottom: 0px ;
 	display: block ;
+	left: 0px ;
+	overflow: auto ;
+	position: absolute ;
+	right: 0px ;
+	top: 0px ;
+}
+
+.items {
+	list-style-type: none ;
+	margin: 0px 0px 0px 0px ;
+	padding: 30px 30px 30px 30px ;
+	display: flex ;
+	flex-direction: column ;
+}
+
+.item {
+	margin: 0px 0px 20px 0px ;
+
+	&:first-child {
+		margin-bottom: 40px ;
+	}
+}
+
+.action {
+	background-color: #cccccc ;
+	border: none ;
+	border-radius: 5px 5px 5px 5px ;
+	color: #000000 ;
+	cursor: pointer ;
+	display: block ;
+	font-size: 16px ;
+	letter-spacing: 0.5px ;
+	line-height: 21px ;
+	padding: 13px 0px 13px 0px ;
+	text-align: center ;
+	text-decoration: none ;
 }

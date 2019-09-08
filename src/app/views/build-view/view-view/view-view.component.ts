@@ -6,7 +6,7 @@ import { Component } from "@angular/core";
 // ----------------------------------------------------------------------------------- //
 
 @Component({
-	selector: "view-view",
+	selector: "poc-view-view",
 	styleUrls: [ "./view-view.component.less" ],
 	templateUrl: "./view-view.component.htm"
 })
