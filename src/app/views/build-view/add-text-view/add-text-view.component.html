@@ -6,13 +6,20 @@
 			Add Text
 		</h3>
 
-		<form class="form">
+		<form (submit)="processForm()" class="form">
 			<div class="form__item">
-				<label class="form__label">
+				<label for="add-text-value-input" class="form__label">
 					Value:
 				</label>
 				<div class="form__control">
-					<textarea autofocus class="form__input"></textarea>
+					<textarea
+						id="add-text-value-input"
+						name="value"
+						[(ngModel)]="form.value"
+						autofocus
+						(keydown.meta.enter)="processForm()"
+						class="form__input"
+					></textarea>
 				</div>
 			</div>
 

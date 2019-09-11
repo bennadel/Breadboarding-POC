@@ -37,17 +37,21 @@
 <div class="content-column">
 	<div class="content-column-inner">
 
-		<poc-preview-breadboard
-			[breadboard]="selectedBreadboard">
-		</poc-preview-breadboard>
+		<ng-template [ngIf]="selectedBreadboard">
 
-		<div class="actions">
-			<a
-				routerLink="/app/build/{{ selectedBreadboard.id }}"
-				class="action">
-				Edit Breadboard
-			</a>
-		</div>
+			<poc-preview-breadboard
+				[breadboard]="selectedBreadboard">
+			</poc-preview-breadboard>
+
+			<div class="actions">
+				<a
+					routerLink="/app/build/{{ selectedBreadboard.id }}"
+					class="action">
+					Edit Breadboard
+				</a>
+			</div>
+
+		</ng-template>
 
 	</div>
 </div>

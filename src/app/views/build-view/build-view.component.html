@@ -37,9 +37,13 @@
 <div class="content-column">
 	<div class="content-column-inner">
 
-		<poc-build-breadboard
-			[breadboard]="selectedBreadboard">
-		</poc-build-breadboard>
+		<ng-template [ngIf]="selectedBreadboard">
+
+			<poc-build-breadboard
+				[breadboard]="selectedBreadboard">
+			</poc-build-breadboard>
+
+		</ng-template>
 
 	</div>
 </div>

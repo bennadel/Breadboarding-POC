@@ -38,81 +38,84 @@ export interface BreadboardAction {
 // TEMPORARY DATA FIXTURES.
 // ----------------------------------------------------------------------------------- //
 
+var bCounter = 0;
+var iCounter = 0;
+
 export var sampleData: Breadboard[] = [
 	{
-		id: "uuid-1",
+		id: `uuid-b-${ ++bCounter }`,
 		title: "Breadboard One",
 		description: "This is my breadboard. Ain't it kind of cool? I think this is something to notice.",
 		items: [
 			{
-				id: "uuid",
+				id: `uuid-i-${ ++iCounter }`,
 				type: "text",
 				value: "This is some text"
 			},
 			{
-				id: "uuid",
+				id: `uuid-i-${ ++iCounter }`,
 				type: "field",
 				label: "First Name",
 				value: "Sarah"
 			},
 			{
-				id: "uuid",
+				id: `uuid-i-${ ++iCounter }`,
 				type: "placeholder",
 				label: "Something over here"
 			},
 			{
-				id: "uuid",
+				id: `uuid-i-${ ++iCounter }`,
 				type: "action",
 				label: "Go To There",
-				target: "uuid-2"
+				target: "uuid-b-2"
 			}
 		]
 	},
 	{
-		id: "uuid-2",
+		id: `uuid-b-${ ++bCounter }`,
 		title: "Breadboard Two",
 		description: "",
 		items: [
 			{
-				id: "uuid",
+				id: `uuid-i-${ ++iCounter }`,
 				type: "text",
 				value: "More text"
 			},
 			{
-				id: "uuid",
+				id: `uuid-i-${ ++iCounter }`,
 				type: "action",
 				label: "Do It",
-				target: "uuid-3"
+				target: "uuid-b-3"
 			}
 		]
 	},
 	{
-		id: "uuid-3",
+		id: `uuid-b-${ ++bCounter }`,
 		title: "Breadboard Three",
 		description: "",
 		items: [
 			{
-				id: "uuid",
+				id: `uuid-i-${ ++iCounter }`,
 				type: "text",
 				value: "This is nice over here with more text wouldn't you say?"
 			},
 			{
-				id: "uuid",
+				id: `uuid-i-${ ++iCounter }`,
 				type: "action",
 				label: "Save",
-				target: "uuid-1"
+				target: "uuid-b-1"
 			},
 			{
-				id: "uuid",
+				id: `uuid-i-${ ++iCounter }`,
 				type: "action",
 				label: "Archive",
-				target: "uuid-2"
+				target: "uuid-b-2"
 			},
 			{
-				id: "uuid",
+				id: `uuid-i-${ ++iCounter }`,
 				type: "action",
 				label: "Delete",
-				target: "uuid-3"
+				target: "uuid-b-3"
 			}
 		]
 	}
