@@ -4,6 +4,7 @@ import { BehaviorSubject } from "rxjs";
 import { distinctUntilChanged } from "rxjs/operators";
 import { map } from "rxjs/operators";
 import { Observable } from "rxjs";
+import { pluck } from "rxjs/operators";
 
 // ----------------------------------------------------------------------------------- //
 // ----------------------------------------------------------------------------------- //
@@ -42,6 +43,7 @@ export class SimpleStore<StateType = any> {
 
 	// I return the given top-level state key as a stream (will always emit the current
 	// key value as the first item in the stream).
+	/*
 	public select<K extends keyof StateType>( key: K ) : Observable<StateType[K]> {
 
 		var selectStream = this.stateSubject.pipe(
@@ -52,6 +54,31 @@ export class SimpleStore<StateType = any> {
 
 				}
 			),
+			distinctUntilChanged()
+		);
+
+		return( selectStream );
+
+	}
+	*/
+
+
+	public select
+		<A extends keyof StateType>
+		( key1: A ) : Observable<StateType[A]>;
+	public select
+		<A extends keyof StateType, B extends keyof StateType[A]>
+		( key1: A, key2: B ) : Observable<StateType[A][B]>;
+	public select
+		<A extends keyof StateType, B extends keyof StateType[A], C extends keyof StateType[A][B]>
+		( key1: A, key2: B, key3: C ) : Observable<StateType[A][B][C]>;
+	public select
+		<A extends keyof StateType, B extends keyof StateType[A], C extends keyof StateType[A][B], D extends keyof StateType[A][B][C]>
+		( key1: A, key2: B, key3: C, key4: D ) : Observable<StateType[A][B][C][D]>;
+	public select( ...keys: string[] ): any {
+
+		var selectStream = this.stateSubject.pipe(
+			pluck( ...keys ),
 			distinctUntilChanged()
 		);
 

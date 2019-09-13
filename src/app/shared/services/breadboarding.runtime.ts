@@ -1,7 +1,9 @@
 
 // Import the core angular services.
+import { combineLatest } from "rxjs";
+import { produce } from "immer";
 import { Injectable } from "@angular/core";
-// import { map } from "rxjs/operators";
+import { map } from "rxjs/operators";
 import { Observable } from "rxjs";
 
 // Import the application components and services.
@@ -16,7 +18,7 @@ import { SimpleStore } from "~/app/shared/services/simple-store";
 
 export interface BreadboardingState {
 	breadboards: Breadboard[];
-	selectedBreadboard: Breadboard | null;
+	selectedBreadboardID: string | null;
 }
 
 // ----------------------------------------------------------------------------------- //
@@ -34,7 +36,7 @@ export class BreadboardingRuntime {
 
 		this.store = new SimpleStore({
 			breadboards: sampleData,
-			selectedBreadboard: null
+			selectedBreadboardID: null
 		});
 
 	}
@@ -43,14 +45,14 @@ export class BreadboardingRuntime {
 	// COMMAND METHODS.
 	// ---
 
-	public async addTextItem(
+	public async addFieldItem(
 		breadboardID: string,
+		label: string,
 		value: string
 		) : Promise<string> {
 
 		var breadboards = this.store.getSnapshot().breadboards;
-		var selectedBreadboard = this.store.getSnapshot().selectedBreadboard;
-		var breadboard = breadboards.find(
+		var breadboardIndex = breadboards.findIndex(
 			( breadboard ) => {
 
 				return( breadboard.id === breadboardID );
@@ -58,10 +60,62 @@ export class BreadboardingRuntime {
 			}
 		);
 
-		if ( ! breadboard ) {
+		if ( breadboardIndex === -1 ) {
 
 			throw( new Error( `Breadboard with ID ${ breadboardID } not found` ) );
 
+		}
+
+		if ( ! label ) {
+
+			throw( new Error( "Empty text label" ) );
+
+		}
+
+		var nextID = `uuid-i-${ Date.now() }`;
+
+		var nextBreadboards = produce(
+			breadboards,
+			( draft ) => {
+
+				var breadboard = draft[ breadboardIndex ];
+
+				breadboard.items.push({
+					type: "field",
+					id: nextID,
+					label: label,
+					value: value
+				});
+
+			}
+		);
+
+		this.store.setState({
+			breadboards: nextBreadboards
+		});
+
+		return( nextID );
+
+	}
+
+
+	public async addTextItem(
+		breadboardID: string,
+		value: string
+		) : Promise<string> {
+
+		var breadboards = this.store.getSnapshot().breadboards;
+		var breadboardIndex = breadboards.findIndex(
+			( breadboard ) => {
+
+				return( breadboard.id === breadboardID );
+
+			}
+		);
+
+		if ( breadboardIndex === -1 ) {
+
+			throw( new Error( `Breadboard with ID ${ breadboardID } not found` ) );
 
 		}
 
@@ -73,28 +127,23 @@ export class BreadboardingRuntime {
 
 		var nextID = `uuid-i-${ Date.now() }`;
 
-		breadboard.items.push({
-			type: "text",
-			id: nextID,
-			value: value
-		});
+		var nextBreadboards = produce(
+			breadboards,
+			( draft ) => {
 
-		// TODO: Having to close these is bunk. Let's re-work the way we are storing the
-		// Array of breadboards so that it's a list of IDs. And, the selected breadboard
-		// should be a list of IDs as well. Then, we can be more flexible in the way that
-		// we are managing state and deriving state.
-		var newBreadboards = this.clone( breadboards );
-		var newSelectedBreadboard = newBreadboards.find(
-			( b ) => {
+				var breadboard = draft[ breadboardIndex ];
 
-				return( b.id === ( selectedBreadboard && selectedBreadboard.id ) );
+				breadboard.items.push({
+					type: "text",
+					id: nextID,
+					value: value
+				});
 
 			}
 		);
 
 		this.store.setState({
-			breadboards: newBreadboards,
-			selectedBreadboard: newSelectedBreadboard
+			breadboards: nextBreadboards
 		});
 
 		return( nextID );
@@ -113,7 +162,7 @@ export class BreadboardingRuntime {
 		}
 
 		this.store.setState({
-			selectedBreadboard: breadboards[ 0 ]
+			selectedBreadboardID: breadboards[ 0 ].id
 		});
 
 	}
@@ -138,11 +187,10 @@ export class BreadboardingRuntime {
 		}
 
 		this.store.setState({
-			selectedBreadboard: selectedBreadboard
+			selectedBreadboardID: breadboardID
 		});
 
 	}
-
 
 	// ---
 	// QUERY METHODS.
@@ -157,18 +205,36 @@ export class BreadboardingRuntime {
 
 	public getSelectedBreadboard() : Observable<Breadboard | null> {
 
-		return( this.store.select( "selectedBreadboard" ) );
+		var stream = combineLatest(
+			this.store.select( "breadboards" ),
+			this.store.select( "selectedBreadboardID" ),
+			( breadboards, selectedBreadboardID ) => {
+
+				if ( ! selectedBreadboardID ) {
+
+					return( null );
+
+				}
+
+				var selectedBreadboard = breadboards.find(
+					( breadboard ) => {
+
+						return( breadboard.id === selectedBreadboardID );
+
+					}
+				);
+
+				return( selectedBreadboard || null );
+
+			}
+		);
+
+		return( stream );
 
 	}
 
 	// ---
 	// PRIVATE METHODS.
 	// ---
-
-	private clone<T>( value: T ) : T {
-
-		return( JSON.parse( JSON.stringify( value ) ) );
-
-	}
 
 }

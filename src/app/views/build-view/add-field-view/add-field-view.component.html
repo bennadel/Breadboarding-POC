@@ -6,13 +6,20 @@
 			Add Field
 		</h3>
 
-		<form class="form">
+		<form (submit)="processForm()" class="form">
 			<div class="form__item">
-				<label class="form__label">
+				<label for="add-field-label-input" class="form__label">
 					Label:
 				</label>
 				<div class="form__control">
-					<input type="text" autofocus class="form__input" />
+					<input
+						id="add-field-label-input"
+						type="text"
+						name="label"
+						[(ngModel)]="form.label"
+						autofocus
+						class="form__input"
+					/>
 				</div>
 			</div>
 			<div class="form__item">
@@ -20,7 +27,13 @@
 					Value:
 				</label>
 				<div class="form__control">
-					<textarea class="form__input"></textarea>
+					<textarea
+						id="add-field-value-input"
+						name="value"
+						[(ngModel)]="form.value"
+						(keydown.meta.enter)="processForm()"
+						class="form__input"
+					></textarea>
 				</div>
 			</div>
 
