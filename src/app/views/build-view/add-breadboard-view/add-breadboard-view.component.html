@@ -6,21 +6,34 @@
 			Add Breadboard
 		</h3>
 
-		<form class="form">
+		<form (submit)="processForm()" class="form">
 			<div class="form__item">
-				<label class="form__label">
+				<label for="add-breadboard-title-input" class="form__label">
 					Title:
 				</label>
 				<div class="form__control">
-					<input type="text" autofocus class="form__input" />
+					<input
+						id="add-breadboard-title-input"
+						type="text"
+						name="title"
+						[(ngModel)]="form.title"
+						autofocus
+						class="form__input"
+					/>
 				</div>
 			</div>
 			<div class="form__item">
-				<label class="form__label">
+				<label for="add-breadboard-description-input" class="form__label">
 					Description:
 				</label>
 				<div class="form__control">
-					<textarea class="form__input"></textarea>
+					<textarea
+						id="add-breadboard-description-input"
+						name="description"
+						[(ngModel)]="form.description"
+						(keydown.meta.enter)="processForm()"
+						class="form__input"
+					></textarea>
 				</div>
 			</div>
 

@@ -11,10 +11,10 @@ import { AddTextView } from "./add-text-view/add-text-view.module";
 import { BuildBreadboardComponent } from "./components/build-breadboard.component";
 import { BuildViewComponent } from "./build-view.component";
 import { EditActionView } from "./edit-action-view/edit-action-view.module";
+import { EditBreadboardView } from "./edit-breadboard-view/edit-breadboard-view.module";
 import { EditFieldView } from "./edit-field-view/edit-field-view.module";
 import { EditPlaceholderView } from "./edit-placeholder-view/edit-placeholder-view.module";
 import { EditTextView } from "./edit-text-view/edit-text-view.module";
-import { EditView } from "./edit-view/edit-view.module";
 import { RoutableView } from "~/app/app.module";
 import { SharedModule } from "~/app/shared/shared.module";
 import { ViewView } from "./view-view/view-view.module";
@@ -35,10 +35,10 @@ import { ViewView } from "./view-view/view-view.module";
 		...AddPlaceholderView.modules,
 		...AddTextView.modules,
 		...EditActionView.modules,
+		...EditBreadboardView.modules,
 		...EditFieldView.modules,
 		...EditPlaceholderView.modules,
 		...EditTextView.modules,
-		...EditView.modules,
 		...ViewView.modules
 	],
 	declarations: [
@@ -84,10 +84,10 @@ export var BuildView: RoutableView = {
 						...AddPlaceholderView.routes,
 						...AddTextView.routes,
 						...EditActionView.routes,
+						...EditBreadboardView.routes,
 						...EditFieldView.routes,
 						...EditPlaceholderView.routes,
 						...EditTextView.routes,
-						...EditView.routes,
 						...ViewView.routes						
 					]
 				}

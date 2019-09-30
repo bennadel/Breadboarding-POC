@@ -3,25 +3,42 @@
 	<div class="form-body-inner">
 
 		<h3 class="title">
-			Edit Action
+			Add Action
 		</h3>
 
-		<form class="form">
+		<form (submit)="processForm()" class="form">
 			<div class="form__item">
-				<label class="form__label">
+				<label for="add-action-label-input" class="form__label">
 					Label:
 				</label>
 				<div class="form__control">
-					<input type="text" autofocus class="form__input" />
+					<input
+						id="add-action-label-input"
+						type="text"
+						name="label"
+						[(ngModel)]="form.label"
+						autofocus
+						class="form__input"
+					/>
 				</div>
 			</div>
 			<div class="form__item">
-				<label class="form__label">
+				<label for="add-action-target-input" class="form__label">
 					Target:
 				</label>
 				<div class="form__control">
-					<select class="form__select">
-						<option value="">New breadboard</option>
+					<select
+						id="add-action-target-input"
+						name="target"
+						[(ngModel)]="form.target"
+						class="form__select">
+						<option [ngValue]="null">New breadboard</option>
+
+						<option
+							*ngFor="let breadboard of breadboards"
+							[ngValue]="breadboard.id">
+							{{ breadboard.title }}
+						</option>
 					</select>
 
 					<div class="form__sub-note">

@@ -5,14 +5,16 @@ import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 
 // Import the application components and services.
-import { BreadboardingRuntime } from "~/app/shared/services/breadboarding.runtime";
-import { Subscriptions } from "~/app/shared/services/subscriptions";
+import { BreadboardService } from "~/app/shared/services/breadboard.service";
 
 // ----------------------------------------------------------------------------------- //
 // ----------------------------------------------------------------------------------- //
 
 @Component({
 	selector: "poc-add-field-view",
+	host: {
+		"(window:keydown.escape)": "handleEscape()"
+	},
 	styleUrls: [
 		"./add-field-view.component.less",
 		// TODO: Research a better way to style a shared set of elements that is not
@@ -29,22 +31,20 @@ export class AddFieldViewComponent {
 	};
 
 	private activatedRoute: ActivatedRoute;
-	private breadboardID: string;
-	private breadboardingRuntime: BreadboardingRuntime;
+	private breadboardService: BreadboardService;
 	private router: Router;
 
 	// I initialize the view component.
 	constructor(
 		activatedRoute: ActivatedRoute,
-		breadboardingRuntime: BreadboardingRuntime,
+		breadboardService: BreadboardService,
 		router: Router
 		) {
 
 		this.activatedRoute = activatedRoute;
-		this.breadboardingRuntime = breadboardingRuntime;
+		this.breadboardService = breadboardService;
 		this.router = router;
 
-		this.breadboardID = this.activatedRoute.snapshot.params.breadboardID;
 		this.form = {
 			label: "",
 			value: ""
@@ -56,20 +56,15 @@ export class AddFieldViewComponent {
 	// PUBLIC METHODS.
 	// ---
 
-	// I get called once when the component is being unmounted.
-	public ngOnDestroy() : void {
+	// I handle the ESC key, taking the user out of the form view.
+	public handleEscape() : void {
 
-		// this.subscriptions.unsubscribe();
-
-	}
-
-
-	// I get called once after the inputs have been bound for the first time.
-	public ngOnInit() : void {
+		this.navigateToView();
 
 	}
 
 
+	// I process the form submission.
 	public processForm() : void {
 
 		if ( ! this.form.label ) {
@@ -78,21 +73,46 @@ export class AddFieldViewComponent {
 
 		}
 
-		this.breadboardingRuntime
-			.addFieldItem( this.breadboardID, this.form.label, this.form.value )
+		this.breadboardService
+			.fieldItemAdd(
+				this.activatedRoute.snapshot.params.breadboardID,
+				{
+					label: this.form.label,
+					value: this.form.value 
+				}
+			)
 			.then(
 				() => {
 
-					this.router.navigate(
-						[ "../view" ],
-						{
-							relativeTo: this.activatedRoute
-						}
-					);
+					this.navigateToView();
+
+				}
+			)
+			.catch(
+				( error ) => {
+
+					console.warn( "Item could not be saved." );
+					console.error( error );
 
 				}
 			)
 		;
+
+	}
+
+	// ---
+	// PRIVATE METHODS.
+	// ---
+
+	// I navigate the user back to the main build view.
+	private navigateToView() : void {
+
+		this.router.navigate(
+			[ "../view" ],
+			{
+				relativeTo: this.activatedRoute
+			}
+		);
 
 	}
 

@@ -6,21 +6,34 @@
 			Edit Breadboard
 		</h3>
 
-		<form class="form">
+		<form (submit)="processForm()" class="form">
 			<div class="form__item">
-				<label class="form__label">
+				<label for="edit-breadboard-title-input" class="form__label">
 					Title:
 				</label>
 				<div class="form__control">
-					<input type="text" autofocus class="form__input" />
+					<input
+						id="edit-breadboard-title-input"
+						type="text"
+						name="title"
+						[(ngModel)]="form.title"
+						autofocus
+						class="form__input"
+					/>
 				</div>
 			</div>
 			<div class="form__item">
-				<label class="form__label">
+				<label for="edit-breadboard-description-input" class="form__label">
 					Description:
 				</label>
 				<div class="form__control">
-					<textarea class="form__input"></textarea>
+					<textarea
+						id="edit-breadboard-description-input"
+						name="description"
+						[(ngModel)]="form.description"
+						(keydown.meta.enter)="processForm()"
+						class="form__input"
+					></textarea>
 				</div>
 			</div>
 
@@ -39,7 +52,7 @@
 
 <div class="form-footer">
 
-	<button class="form__delete">
+	<button (click)="processDelete()" class="form__delete">
 		Delete Breadboard
 	</button>
 

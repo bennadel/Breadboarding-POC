@@ -6,21 +6,34 @@
 			Edit Field
 		</h3>
 
-		<form class="form">
+		<form (submit)="processForm()" class="form">
 			<div class="form__item">
-				<label class="form__label">
+				<label for="edit-field-label-input" class="form__label">
 					Label:
 				</label>
 				<div class="form__control">
-					<input type="text" autofocus class="form__input" />
+					<input
+						id="edit-field-label-input"
+						type="text"
+						name="label"
+						[(ngModel)]="form.label"
+						autofocus
+						class="form__input"
+					/>
 				</div>
 			</div>
 			<div class="form__item">
-				<label class="form__label">
+				<label for="edit-field-value-input" class="form__label">
 					Value:
 				</label>
 				<div class="form__control">
-					<textarea class="form__input"></textarea>
+					<textarea
+						id="edit-field-value-input"
+						name="value"
+						[(ngModel)]="form.value"
+						(keydown.meta.enter)="processForm()"
+						class="form__input"
+					></textarea>
 				</div>
 			</div>
 
@@ -39,7 +52,7 @@
 
 <div class="form-footer">
 
-	<button class="form__delete">
+	<button (click)="processDelete()" class="form__delete">
 		Delete Field
 	</button>
 

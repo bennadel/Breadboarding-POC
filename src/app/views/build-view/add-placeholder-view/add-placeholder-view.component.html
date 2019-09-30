@@ -6,13 +6,20 @@
 			Add Placeholder
 		</h3>
 
-		<form class="form">
+		<form (submit)="processForm()" class="form">
 			<div class="form__item">
-				<label class="form__label">
+				<label for="add-placeholder-label-input" class="form__label">
 					Label:
 				</label>
 				<div class="form__control">
-					<textarea autofocus class="form__input"></textarea>
+					<textarea
+						id="add-placeholder-label-input"
+						name="label"
+						[(ngModel)]="form.label"
+						autofocus
+						(keydown.meta.enter)="processForm()"
+						class="form__input"
+					></textarea>
 				</div>
 			</div>
 

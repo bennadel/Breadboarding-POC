@@ -5,6 +5,7 @@ import { Component } from "@angular/core";
 
 // Import the application components and services.
 import { Breadboard } from "~/app/shared/interfaces/breadboard";
+import { BreadboardItem } from "~/app/shared/interfaces/breadboard";
 
 // ----------------------------------------------------------------------------------- //
 // ----------------------------------------------------------------------------------- //
@@ -19,5 +20,16 @@ import { Breadboard } from "~/app/shared/interfaces/breadboard";
 export class PreviewBreadboardComponent {
 
 	public breadboard!: Breadboard;
+
+	// ---
+	// PUBLIC METHODS.
+	// ---
+
+	// I return the ngFor iteration identifier for items.
+	public trackBy( index: number, item: BreadboardItem ) : string {
+
+		return( item.id );
+
+	}
 
 }

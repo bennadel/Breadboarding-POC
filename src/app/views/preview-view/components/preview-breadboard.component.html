@@ -8,7 +8,7 @@
 </div>
 
 <ul class="items">
-	<ng-template ngFor let-item [ngForOf]="breadboard.items">
+	<ng-template ngFor let-item [ngForOf]="breadboard.items" [ngForTrackBy]="trackBy">
 
 		<li class="item" [ngSwitch]="item.type">
 			

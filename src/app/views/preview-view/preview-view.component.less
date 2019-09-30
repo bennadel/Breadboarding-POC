@@ -22,10 +22,19 @@
 	flex: 1 1 auto ;
 	justify-content: center ;
 	overflow: auto ;
+	overscroll-behavior: contain ;
 }
 
 .content-column-inner {
-	padding: 30px 30px 30px 30px ;
+	padding: 30px 30px 0px 30px ;
+
+	// NOTE: I need this because flex containers apply padding in a really weird way.
+	// This after-content applies the bottom padding for the parent.
+	&::after {
+		content: "" ;
+		display: block ;
+		height: 30px ;
+	}
 }
 
 .modes {
@@ -59,6 +68,7 @@
 .toc {
 	flex: 1 1 auto ;
 	overflow: auto ;
+	overscroll-behavior: contain ;
 }
 
 .toc-inner {

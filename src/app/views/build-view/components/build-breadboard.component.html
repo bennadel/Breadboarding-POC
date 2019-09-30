@@ -16,7 +16,7 @@
 </a>
 
 <ul class="items">
-	<ng-template ngFor let-item [ngForOf]="breadboard.items">
+	<ng-template ngFor let-item [ngForOf]="breadboard.items" [ngForTrackBy]="trackBy">
 
 		<li class="item" [ngSwitch]="item.type">
 			
@@ -65,6 +65,7 @@
 
 				<a
 					routerLink="/app/build/{{ breadboard.id }}/edit-action/{{ item.id }}"
+					(click)="checkForShiftClick( $event, item )"
 					class="item-action">
 					<div class="action-item">
 						{{ item.label }}

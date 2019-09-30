@@ -6,7 +6,8 @@ import { Router } from "@angular/router";
 
 // Import the application components and services.
 import { Breadboard } from "~/app/shared/interfaces/breadboard";
-import { BreadboardingRuntime } from "~/app/shared/services/breadboarding.runtime";
+import { BreadboardService } from "~/app/shared/services/breadboard.service";
+import { DomainEventsService } from "~/app/shared/services/domain-events.service";
 import { Subscriptions } from "~/app/shared/services/subscriptions";
 
 // ----------------------------------------------------------------------------------- //
@@ -24,18 +25,21 @@ export class PreviewViewComponent {
 	public subscriptions: Subscriptions;
 
 	private activatedRoute: ActivatedRoute;
-	private breadboardingRuntime: BreadboardingRuntime;
+	private breadboardService: BreadboardService;
+	private domainEventsService: DomainEventsService;
 	private router: Router;
 
 	// I initialize the view component.
 	constructor(
 		activatedRoute: ActivatedRoute,
-		breadboardingRuntime: BreadboardingRuntime,
+		breadboardService: BreadboardService,
+		domainEventsService: DomainEventsService,
 		router: Router
 		) {
 
 		this.activatedRoute = activatedRoute;
-		this.breadboardingRuntime = breadboardingRuntime;
+		this.breadboardService = breadboardService;
+		this.domainEventsService = domainEventsService;
 		this.router = router;
 
 		this.breadboards = [];
@@ -63,39 +67,114 @@ export class PreviewViewComponent {
 			this.activatedRoute.params.subscribe(
 				( params ) => {
 
-					var promise = ( params.breadboardID === "first" )
-						? this.breadboardingRuntime.selectFirstBreadboard()
-						: this.breadboardingRuntime.selectBreadboard( params.breadboardID )
-					;
-
-					promise.catch(
-						( error ) => {
-
-							console.group( "Error when selecting breadboard" );
-							console.error( error );
-							console.groupEnd();
-
-						}
-					);
+					this.selectBreadboard();
 
 				}
 			),
-			this.breadboardingRuntime.getBreadboards().subscribe(
-				( breadboards ) => {
+			this.domainEventsService.events.subscribe(
+				( event ) => {
 
-					this.breadboards = breadboards;
-
-				}
-			),
-			this.breadboardingRuntime.getSelectedBreadboard().subscribe(
-				( selectedBreadboard ) => {
-
-					this.selectedBreadboard = selectedBreadboard;
+					// CAUTION: For the proof-of-concept, we're just going to reload the
+					// data on any domain events. We know that the data is LOCAL, so we
+					// know this will be instant. In reality, we would want to be more
+					// targeted in how this works.
+					this.loadRemoteData();
 
 				}
 			)
-
 		);
+
+		this.loadRemoteData();
+
+	}
+
+
+	// I return the ngFor iteration identifier for breadboards.
+	public trackBy( index: number, breadboard: Breadboard ) : string {
+
+		return( breadboard.id );
+
+	}
+
+	// ---
+	// PRIVATE METHODS.
+	// ---
+
+	// I load the remote data needed for the view model.
+	private loadRemoteData() : void {
+
+		this.breadboardService.breadboardGetAll()
+			.then(
+				( breadboards ) => {
+
+					this.breadboards = breadboards;
+					this.selectBreadboard();
+
+				}
+			)
+			.catch(
+				( error ) => {
+
+					console.warn( "Breadboards could not be loaded." );
+					console.log( error );
+
+				}
+			)
+		;
+
+	}
+
+
+	// I select the target breadboard.
+	private selectBreadboard() : void {
+
+		var breadboardID = this.activatedRoute.snapshot.params.breadboardID;
+		this.selectedBreadboard = null;
+
+		// If the breadboards haven't loaded, or if there are no breadboards, just exit;
+		// there's nothing to select.
+		if ( ! this.breadboards.length ) {
+
+			return;
+
+		}
+
+		// If the target breadboard is the "first" abstraction, then navigate to the
+		// appropriate breadboard ID - this URL change will re-trigger the appropriate
+		// breadboard selection.
+		if ( breadboardID === "first" ) {
+
+			this.router.navigate(
+				[ "/app/preview/" + this.breadboards[ 0 ].id ],
+				{
+					replaceUrl: true
+				}
+			);
+			return;
+
+		}
+
+		// If we made it this far, we have breadboards and a target ID. Let's see if we
+		// can locate the target breadboard.
+		var foundBreadboard = this.breadboards.find(
+			( breadboard ) => {
+
+				return( breadboard.id === breadboardID );
+
+			}
+		);
+
+		if ( foundBreadboard ) {
+
+			this.selectedBreadboard = foundBreadboard;
+
+		} else {
+
+			// If the target breadboard ID wasn't valid, just redirect the user to the
+			// first valid breadboard.
+			this.router.navigate( [ "/app/preview/first" ] );
+
+		}
 
 	}
 

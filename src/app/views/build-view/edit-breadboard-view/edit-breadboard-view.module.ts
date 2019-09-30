@@ -3,7 +3,7 @@
 import { NgModule } from "@angular/core";
 
 // Import the application components and services.
-import { EditViewComponent } from "./edit-view.component";
+import { EditBreadboardViewComponent } from "./edit-breadboard-view.component";
 import { RoutableView } from "~/app/app.module";
 import { SharedModule } from "~/app/shared/shared.module";
 
@@ -15,25 +15,25 @@ import { SharedModule } from "~/app/shared/shared.module";
 		SharedModule
 	],
 	declarations: [
-		EditViewComponent
+		EditBreadboardViewComponent
 	]
 })
-export class EditViewModule {
+export class EditBreadboardViewModule {
 	// ...
 }
 
-export var EditView: RoutableView = {
+export var EditBreadboardView: RoutableView = {
 	modules: [
 		// NOTE: Since this module's routes are being included directly in the parent
 		// module's router definition, we need to tell the parent module to import this
 		// module. Otherwise, the application won't know about the declared components
 		// and services.
-		EditViewModule
+		EditBreadboardViewModule
 	],
 	routes: [
 		{
 			path: "edit",
-			component: EditViewComponent
+			component: EditBreadboardViewComponent
 		}
 	]
 };

@@ -13,27 +13,28 @@ import { Subscriptions } from "~/app/shared/services/subscriptions";
 // ----------------------------------------------------------------------------------- //
 
 @Component({
-	selector: "poc-edit-text-view",
+	selector: "poc-edit-breadboard-view",
 	host: {
 		"(window:keydown.escape)": "handleEscape()"
 	},
 	styleUrls: [
-		"./edit-text-view.component.less",
+		"./edit-breadboard-view.component.less",
 		// TODO: Research a better way to style a shared set of elements that is not
 		// an actual component. I wish I was better at CSS methodologies.
 		"../../../../app/shared/less/aside-form.less"
 	],
-	templateUrl: "./edit-text-view.component.html"
+	templateUrl: "./edit-breadboard-view.component.html"
 })
-export class EditTextViewComponent {
+export class EditBreadboardViewComponent {
 
 	public form: {
-		value: string;
+		title: string;
+		description: string;
 	};
 
 	private activatedRoute: ActivatedRoute;
+	private breadboardID: string;
 	private breadboardService: BreadboardService;
-	private itemID: string;
 	private router: Router;
 	private subscriptions: Subscriptions;
 
@@ -48,10 +49,11 @@ export class EditTextViewComponent {
 		this.breadboardService = breadboardService;
 		this.router = router;
 
+		this.breadboardID = "";
 		this.form = {
-			value: ""
+			title: "",
+			description: ""
 		};
-		this.itemID = "";
 		this.subscriptions = new Subscriptions();
 
 	}
@@ -88,8 +90,9 @@ export class EditTextViewComponent {
 			paramsStream.subscribe(
 				( params ) => {
 
-					this.itemID = params.itemID;
-					this.form.value = "";
+					this.breadboardID = params.breadboardID;
+					this.form.title = "";
+					this.form.description = "";
 					this.loadRemoteData();
 
 				}
@@ -102,25 +105,30 @@ export class EditTextViewComponent {
 	// I process the deletion request.
 	public processDelete() : void {
 
-		if ( ! window.confirm( "Delete this item?" ) ) {
+		if ( ! window.confirm( "Delete this breadboard?" ) ) {
 
 			return;
 
 		}
 
 		this.breadboardService
-			.textItemDeleteByID( this.itemID )
+			.breadboardDeleteByID( this.breadboardID )
 			.then(
 				() => {
 
-					this.navigateToView();
+					// CAUTION: There is a wonky race-condition around deleting a
+					// breadboard that I am not entirely sure how to handle. As such, for
+					// this proof-of-concept, I'm going to ASSUME that the Build mode
+					// will automatically handle the Router navigation based on the
+					// "breadboard.delete" event. This is lame-sauce; but, I am not that
+					// smart.
 
 				}
 			)
 			.catch(
 				( error ) => {
 
-					console.warn( "Item could not be deleted." );
+					console.warn( "Breadboard could not be deleted." );
 					console.error( error );
 
 				}
@@ -133,17 +141,18 @@ export class EditTextViewComponent {
 	// I process the form submission.
 	public processForm() : void {
 
-		if ( ! this.form.value ) {
+		if ( ! this.form.title ) {
 
 			return;
 
 		}
 
 		this.breadboardService
-			.textItemUpdateByID(
-				this.itemID,
+			.breadboardUpdateByID(
+				this.breadboardID,
 				{
-					value: this.form.value
+					title: this.form.title,
+					description: this.form.description
 				}
 			)
 			.then(
@@ -156,7 +165,7 @@ export class EditTextViewComponent {
 			.catch(
 				( error ) => {
 
-					console.warn( "Item could not be saved." );
+					console.warn( "Breadboard could not be saved." );
 					console.error( error );
 
 				}
@@ -169,22 +178,23 @@ export class EditTextViewComponent {
 	// PRIVATE METHODS.
 	// ---
 
-	// I load the remote Item data based on the current item ID.
+	// I load the remote Breadboard data based on the current breadboard ID.
 	private loadRemoteData() : void {
 
 		this.breadboardService
-			.textItemGetByID( this.itemID )
+			.breadboardGetByID( this.breadboardID )
 			.then(
-				( item ) => {
+				( breadboard ) => {
 
-					this.form.value = item.value;
+					this.form.title = breadboard.title;
+					this.form.description = breadboard.description;
 
 				}
 			)
 			.catch(
 				( error ) => {
 
-					console.warn( "Item could not be loaded." );
+					console.warn( "Breadboard could not be loaded." );
 					console.error( error );
 					this.navigateToView();
 
@@ -199,7 +209,7 @@ export class EditTextViewComponent {
 	private navigateToView() : void {
 
 		this.router.navigate(
-			[ "../../view" ],
+			[ "../view" ],
 			{
 				relativeTo: this.activatedRoute
 			}

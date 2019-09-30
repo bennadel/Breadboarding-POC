@@ -14,7 +14,7 @@
 		<div class="toc-inner">
 
 			<ul class="toc-items">
-				<ng-template ngFor let-breadboard [ngForOf]="breadboards">
+				<ng-template ngFor let-breadboard [ngForOf]="breadboards" [ngForTrackBy]="trackBy">
 
 					<li class="toc-item">
 
