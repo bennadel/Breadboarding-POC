@@ -74,6 +74,10 @@
 					}
 				}
 			}
-		}},
-	"defaultProject": "breadboarding-poc"
+		}
+	},
+	"defaultProject": "breadboarding-poc",
+	"cli": {
+		"analytics": "ae7bd167-2edb-4826-8aaa-9cc17971aeaf"
+	}
 }

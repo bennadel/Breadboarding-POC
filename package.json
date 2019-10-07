@@ -11,12 +11,12 @@
 	"private": true,
 	"dependencies": {
 		"@angular/animations": "next",
-		"@angular/cdk": "^8.2.2",
+		"@angular/cdk": "8.2.2",
 		"@angular/common": "next",
 		"@angular/compiler": "next",
 		"@angular/core": "next",
 		"@angular/forms": "next",
-		"@angular/material": "^8.2.2",
+		"@angular/material": "8.2.2",
 		"@angular/platform-browser": "next",
 		"@angular/platform-browser-dynamic": "next",
 		"@angular/router": "next",
@@ -30,7 +30,7 @@
 		"@angular/cli": "next",
 		"@angular/compiler-cli": "next",
 		"@angular/language-service": "next",
-		"@types/node": "~8.9.4",
-		"typescript": "~3.4.3"
+		"@types/node": "8.9.4",
+		"typescript": "3.4.3"
 	}
 }
