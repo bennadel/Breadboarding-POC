@@ -42,19 +42,25 @@
 	font-size: 16px ;
 	letter-spacing: 0.5px ;
 	line-height: 21px ;
-	list-style-type: none ;
-	margin: 0px 0px 0px 0px ;
 	padding: 10px 13px 10px 13px ;
+	user-select: none ;
+		-moz-user-select: none ;
+		-webkit-user-select: none ;
 }
 
 .item {
 	margin: 0px 0px 3px 0px ;
-	padding: 0px 0px 0px 0px ;
 
 	&:last-child {
 		margin-bottom: 0px ;
 	}
+
+	// This class is added to the selected item during a drag operation.
+	&.cdk-drag-placeholder {
+		opacity: 0.3 ;
+	}
 }
+
 
 .item-action {
 	border: 1px dashed #aaaaaa ;
@@ -64,9 +70,21 @@
 	padding: 10px 10px 10px 10px ;
 	text-decoration: none ;
 
-	&:hover {
+	.items:not(.cdk-drop-list-dragging) &:hover {
 		border-color: #333333 ;
 		border-style: solid ;
+	}
+}
+
+// This class is added to the fixed-position element that follows the mouse cursor during
+// the drag operation.
+.cdk-drag-preview {
+	background-color: #dadada ;
+	border-radius: 5px 5px 5px 5px ;
+	box-shadow: 2px 4px 6px fade( #000000, 20% ) ;
+
+	.item-action {
+		border: 2px solid #ff3366 ;
 	}
 }
 

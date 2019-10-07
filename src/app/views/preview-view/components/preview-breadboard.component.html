@@ -7,10 +7,10 @@
 	{{ breadboard.description }}
 </div>
 
-<ul class="items">
+<div class="items">
 	<ng-template ngFor let-item [ngForOf]="breadboard.items" [ngForTrackBy]="trackBy">
 
-		<li class="item" [ngSwitch]="item.type">
+		<div class="item" [ngSwitch]="item.type">
 			
 			<ng-template ngSwitchCase="text">
 
@@ -49,7 +49,7 @@
 
 			</ng-template>
 
-		</li>
+		</div>
 
 	</ng-template>
-</ul>
+</div>

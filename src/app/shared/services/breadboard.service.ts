@@ -388,6 +388,71 @@ export class BreadboardService {
 	}
 
 
+	public async breadboardSortByID(
+		breadboardID: string,
+		itemIDs: string[]
+		) : Promise<void> {
+
+		var index = this.breadboardIndex.breadboard[ breadboardID ];
+
+		if ( index === undefined ) {
+
+			throw( new Error( `Breadboard with ID ${ breadboardID } not found.` ) );
+
+		}
+
+		var breadboard = this.breadboards[ index ];
+
+		if ( itemIDs.length !== breadboard.items.length ) {
+
+			throw( new Error( "Invalid set of IDs for breadboard sort." ) );
+
+		}
+
+		for ( var itemID of itemIDs ) {
+
+			var itemIndex = this.breadboardIndex.item[ itemID ];
+
+			if (
+				! itemIndex ||
+				( this.breadboards[ itemIndex[ 0 ] ].id !== breadboardID )
+				) {
+
+				throw( new Error( "Corrupted ID data for sort." ) );
+
+			}
+
+		}
+
+		this.breadboards = produce(
+			this.breadboards,
+			( draft ) => {
+
+				draft[ index ].items = itemIDs.map(
+					( itemID ) => {
+
+						var itemIndex = this.breadboardIndex.item[ itemID ];
+
+						return( this.breadboards[ itemIndex[ 0 ] ].items[ itemIndex[ 1 ] ] );
+
+					}
+				);
+
+			}
+		);
+
+		this.buildIndex();
+		this.flushDB();
+		this.events.trigger({
+			type: "breadboard.update",
+			payload: {
+				breadboardID: breadboardID
+			}
+		});
+
+	}
+
+
 	public async breadboardUpdateByID(
 		breadboardID: string,
 		patch: {

@@ -52,6 +52,19 @@ export class BuildViewComponent {
 	// PUBLIC METHODS.
 	// ---
 
+	// I get called when an item has been moved in the list.
+	public handleSort( itemIDs: string[] ) : void {
+
+		if ( this.selectedBreadboard ) {
+
+			// NOTE: This component is listening for domain events; so, this will
+			// implicitly cause the breadboard data to be reloaed / re-rendered.
+			this.breadboardService.breadboardSortByID( this.selectedBreadboard.id, itemIDs );
+
+		}
+
+	}
+
 	// I get called once when the component is being unmounted.
 	public ngOnDestroy() : void {
 

@@ -1,5 +1,6 @@
 
 // Import the core angular services.
+import { DragDropModule } from "@angular/cdk/drag-drop";
 import { NgModule } from "@angular/core";
 
 // Import the application components and services.
@@ -25,6 +26,7 @@ import { ViewView } from "./view-view/view-view.module";
 @NgModule({
 	imports: [
 		SharedModule,
+		DragDropModule,
 		// NOTE: When a routing module is statically included, then the routing module
 		// needs to be explicitly imported. In order to not worry about this divergence,
 		// let's let the child module define the importable modules (which may or may

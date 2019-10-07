@@ -40,8 +40,17 @@
 		<ng-template [ngIf]="selectedBreadboard">
 
 			<poc-build-breadboard
-				[breadboard]="selectedBreadboard">
+				[breadboard]="selectedBreadboard"
+				(sort)="handleSort( $event )">
 			</poc-build-breadboard>
+
+			<div class="actions">
+				<a
+					routerLink="/app/preview/{{ selectedBreadboard.id }}"
+					class="action">
+					Preview Breadboard
+				</a>
+			</div>
 
 		</ng-template>
 

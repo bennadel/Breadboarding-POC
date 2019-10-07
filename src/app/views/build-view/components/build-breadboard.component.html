@@ -15,15 +15,25 @@
 
 </a>
 
-<ul class="items">
+<!--
+	CAUTION: I have to .preventDefault() on the anchor links, otherwise the browser will
+	attempt to drag the Anchors rather than let Angular Material do its thing. The links
+	still appear to be "clickable", so I am not too worried. But, it does feel janky.
+	Such approaches are not unusual in anything related to "drag" events.
+	--
+	NOTE: I'm not sure why it didn't work to put the .preventDefault() on the list
+	itself; it appears to be needed on each individual Anchor tag.
+-->
+<div cdkDropList (cdkDropListDropped)="dropItem( $event )" class="items">
 	<ng-template ngFor let-item [ngForOf]="breadboard.items" [ngForTrackBy]="trackBy">
 
-		<li class="item" [ngSwitch]="item.type">
+		<div cdkDrag class="item" [ngSwitch]="item.type">
 			
 			<ng-template ngSwitchCase="text">
 
 				<a
 					routerLink="/app/build/{{ breadboard.id }}/edit-text/{{ item.id }}"
+					(mousedown)="$event.preventDefault()"
 					class="item-action">
 					<div class="text-item">
 						{{ item.value }}
@@ -36,6 +46,7 @@
 
 				<a
 					routerLink="/app/build/{{ breadboard.id }}/edit-field/{{ item.id }}"
+					(mousedown)="$event.preventDefault()"
 				 	class="item-action">
 				 	<div class="field-item">
 						<div class="field-item__label">
@@ -53,6 +64,7 @@
 
 				<a
 					routerLink="/app/build/{{ breadboard.id }}/edit-placeholder/{{ item.id }}"
+					(mousedown)="$event.preventDefault()"
 					class="item-action">
 					<div class="placeholder-item">
 						{{ item.label }}
@@ -65,6 +77,7 @@
 
 				<a
 					routerLink="/app/build/{{ breadboard.id }}/edit-action/{{ item.id }}"
+					(mousedown)="$event.preventDefault()"
 					(click)="checkForShiftClick( $event, item )"
 					class="item-action">
 					<div class="action-item">
@@ -74,7 +87,7 @@
 
 			</ng-template>
 
-		</li>
+		</div>
 
 	</ng-template>
-</ul>
+</div>
